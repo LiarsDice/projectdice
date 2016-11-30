@@ -1,0 +1,24 @@
+package liar;
+import java.util.Scanner;
+
+public class Player {
+    String name;
+    int lives = 6;
+    cup myCup = new cup();
+    
+    public int getLives(){
+        return lives;    
+    }
+    public void loseLives(){
+        lives -= 1;
+    } 
+    public void setName(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("What is your name?\n");
+        name = input.nextLine();
+    }
+    public String getName(){
+        return name;
+    }        
+}
+//not done yet but this is what ive got
