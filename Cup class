@@ -1,0 +1,9 @@
+package liar;
+import java.util.ArrayList;
+
+public class cup {
+    Dice yourdie = new Dice();
+    ArrayList<Dice> dicenumber = new ArrayList<>(6);
+    dicenumber.add(yourdie);
+    
+}
