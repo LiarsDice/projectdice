@@ -1,9 +1,21 @@
 package liar;
 import java.util.ArrayList;
-
+/**
+ *
+ * @author Kaytlen
+ */
 public class cup {
     Dice yourdie = new Dice();
-    ArrayList<Dice> dicenumber = new ArrayList<>(6);
-    dicenumber.add(yourdie);
+    ArrayList<Dice> diceNumber = new ArrayList<>();
+    
+    public void removeDice(Dice c)
+    {
+        diceNumber.remove();
+    }
+    
+    public void addDice(Dice d)
+    {
+        diceNumber.add(d);
+    }
     
 }
