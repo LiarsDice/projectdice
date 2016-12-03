@@ -1,3 +1,8 @@
+
+package liar;
+
+import java.util.Scanner;
+
 public class beck {
     int onDice = 1;
     int numberOfDice = 1;
@@ -21,4 +26,17 @@ public class beck {
     public void moreDice(){
         numberOfDice = input.nextInt();
     }
+    
+    public void moreDiceAi(){
+        numberOfDice++;
+    }
+    
+    public void higerDiceAi(){
+        onDice++;
+    }
+    public void newRound(){
+        onDice = 1;
+        numberOfDice = 1;
+    }
 }
+
