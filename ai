@@ -1,0 +1,21 @@
+public class Ai {
+    String name = "ai";
+    int lives = 6;
+    cup myCup = new cup();
+    
+    
+    public int getLives(){
+        return lives;    
+    }
+    public void loseLives(){
+        lives -= 1;
+    } 
+    
+    public String getName(){
+        return name;
+    }      
+    
+    public void shake(){
+        myCup.shakeCup();
+    }
+}
