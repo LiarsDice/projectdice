@@ -1,0 +1,24 @@
+public class beck {
+    int onDice = 1;
+    int numberOfDice = 1;
+    Scanner input = new Scanner(System.in);
+    
+    public int annteDiceNumber()
+        {        
+        return onDice;
+        }
+    
+    public int annteNumberOfDice()
+        {
+        return numberOfDice;       
+        }
+    
+    public void higherDice()
+    {
+        onDice = input.nextInt();
+    }
+    
+    public void moreDice(){
+        numberOfDice = input.nextInt();
+    }
+}
