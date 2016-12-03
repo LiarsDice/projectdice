@@ -1,21 +1,38 @@
 package liar;
 import java.util.ArrayList;
-/**
- *
- * @author Kaytlen
- */
+
 public class cup {
     Dice yourdie = new Dice();
     ArrayList<Dice> diceNumber = new ArrayList<>();
     
+
+    public cup()
+    {
+        for (int i = 0; i < 6; i++){
+             addDice(new Dice());
+        }
+    }
+    
     public void removeDice(Dice c)
     {
-        diceNumber.remove();
+        diceNumber.remove(0);
+        
     }
     
     public void addDice(Dice d)
     {
         diceNumber.add(d);
     }
+    //shake method for each to do it
+    public void shakeCup(){
+        for (Dice icecream: diceNumber){
+        icecream.roll();
+    }
+    }
+    
+    public Dice[] showDice(){
+        return diceNumber.toArray(new Dice[0]);
+    }    
+        
     
 }
