@@ -6,6 +6,7 @@ public class Player {
     int lives = 6;
     cup myCup = new cup();
     
+    
     public int getLives(){
         return lives;    
     }
@@ -19,6 +20,9 @@ public class Player {
     }
     public String getName(){
         return name;
-    }        
+    }      
+    
+    public void shake(){
+        myCup.shakeCup();
+    }
 }
-//not done yet but this is what ive got
