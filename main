@@ -1,4 +1,10 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package liar;
+import java.util.Random;
 import java.util.Scanner;
 
 public class call {
@@ -16,13 +22,19 @@ public class call {
         String value = "value";
         String quantity = "quantity";
         String accuse = "accuse";
+        int thinking = 0;
+        int counter = 1;
+        Random rand = new Random();
         
         do{
             you.shake();
             one.shake();
             two.shake();
             three.shake();
-            do{          
+            annte.newRound();
+            liar = false;
+            do{ 
+                counter = 0;
                 for(Dice d : you.myCup.showDice())
                     {    
                     System.out.println(d.face);
@@ -35,11 +47,15 @@ public class call {
                     if (nextChoice.equalsIgnoreCase(value)){
                         System.out.println("What value?");
                         annte.higherDice();
+                        System.out.printf("The bet is now %d %d's \n",
+                                annte.annteNumberOfDice(), annte.annteDiceNumber());
                         System.out.println("");
                     }
                     else if (nextChoice.equalsIgnoreCase(quantity)) {
                         System.out.println("How many dice?");
                         annte.moreDice();
+                        System.out.printf("The bet is now %d %d's\n",
+                                annte.annteNumberOfDice(), annte.annteDiceNumber());
                         System.out.println("");
                     }
                     else{
@@ -51,19 +67,133 @@ public class call {
                     System.out.println("You are a liar!");
                     System.out.println("");
                     liar = true;
+                    break;
                 }
                 else{
                     System.out.println("That wasn't an option so we will skip"
                             + " your turn.");
                 }
+                counter++;
+                if (one.getLives()>0){
+                    if (annte.numberOfDice > you.getLives()+one.getLives()+two.getLives()
+                            +three.getLives()|| annte.annteDiceNumber()>6)
+                        thinking = 1;
+                    else if(annte.onDice > 6)
+                            thinking = 1;
+                    else
+                        thinking = rand.nextInt(7);
+                    switch (thinking){
+                        case 1:
+                            liar = true;
+                            System.out.println("Liar!");
+                            break;
+                        case 6: case 3: case 0:
+                            System.out.println("Player two raises number of dice.");
+                            annte.moreDiceAi();
+                            System.out.printf("The bet is now %d %d's\n",
+                                annte.annteNumberOfDice(), annte.annteDiceNumber());
+                            break;
+                        case 4: case 5: case 2:
+                            System.out.println("Player two raises dice number.");
+                            annte.higerDiceAi();
+                            System.out.printf("The bet is now %d %d's\n",
+                                annte.annteNumberOfDice(), annte.annteDiceNumber());
+                            break;
+                        
+                    }
+                }
+                if (liar == true)
+                    break;
+                counter++;
+                if (two.getLives()>0){
+                    if (annte.numberOfDice > you.getLives()+one.getLives()+two.getLives()
+                            +three.getLives()|| annte.annteDiceNumber()>6)
+                        thinking = 1;
+                    else if(annte.onDice > 6)
+                            thinking = 1;
+                    else
+                        thinking = rand.nextInt(7);
+                    switch (thinking){
+                        case 1:
+                            liar = true;
+                            System.out.println("Liar!");
+                            break;
+                        case 6: case 3: case 0:
+                            System.out.println("Player three raises number of dice.");
+                            annte.moreDiceAi();
+                            System.out.printf("The bet is now %d %d's\n",
+                                annte.annteNumberOfDice(), annte.annteDiceNumber());
+                            break;
+                        case 4: case 5: case 2:
+                            System.out.println("Player three raises dice number.");
+                            annte.higerDiceAi();
+                            System.out.printf("The bet is now %d %d's\n",
+                                annte.annteNumberOfDice(), annte.annteDiceNumber());
+                            break;
+                        
+                    }
+                }
+                if (liar == true)
+                    break;
+                counter++;
+                if (three.getLives()>0){
+                    if (annte.numberOfDice > you.getLives()+one.getLives()+two.getLives()
+                            +three.getLives()|| annte.annteDiceNumber()>6)
+                        thinking = 1;
+                    else if(annte.onDice > 6)
+                            thinking = 1;
+                    else
+                        thinking = rand.nextInt(7);
+                    switch (thinking){
+                        case 1:
+                            liar = true;
+                            System.out.println("Liar!");
+                            break;
+                        case 6: case 3: case 0:
+                            System.out.println("Player four raises number of dice.");
+                            annte.moreDiceAi();
+                            System.out.printf("The bet is now %d %d's\n",
+                                annte.annteNumberOfDice(), annte.annteDiceNumber());
+                            break;
+                        case 4: case 5: case 2:
+                            System.out.println("Player four raises dice number.");
+                            annte.higerDiceAi();
+                            System.out.printf("The bet is now %d %d's\n",
+                                annte.annteNumberOfDice(), annte.annteDiceNumber());
+                            break;
+                        
+                    }
+                }
                 
             }while (liar == false);
-            //you.loseLives();
+            switch(counter){
+                case 1:
+                    you.loseLives();
+                    you.myCup.removeDice();
+                    System.out.println("You have lost a life.");
+                    break;
+                case 2:
+                    one.loseLives();
+                    one.myCup.removeDice();
+                    System.out.println("Player two has lost a life.");
+                    break;
+                case 3:
+                    two.loseLives();
+                    two.myCup.removeDice();
+                    System.out.println("Player three has lost a life.");
+                    break;
+                case 0: case 4:
+                    three.loseLives();
+                    three.myCup.removeDice();
+                    System.out.println("Player four has lost a life.");
+                    break;
+                    
+            }
         } while (you.getLives()>0);//use 5 in quick test and lose life
+        
     }
     public static void menu(){
         System.out.println("raise or accuse?");
     }
     
 }
-//not done yet
