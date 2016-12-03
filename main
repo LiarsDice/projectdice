@@ -1,0 +1,69 @@
+package liar;
+import java.util.Scanner;
+
+public class call {
+   
+    
+    public static void main(String[] args) {
+        Player you = new Player();
+        Ai one = new Ai();
+        Ai two = new Ai();
+        Ai three = new Ai();
+        beck annte = new beck();
+        Scanner input = new Scanner(System.in);
+        boolean liar = false;
+        String raise = "raise";
+        String value = "value";
+        String quantity = "quantity";
+        String accuse = "accuse";
+        
+        do{
+            you.shake();
+            one.shake();
+            two.shake();
+            three.shake();
+            do{          
+                for(Dice d : you.myCup.showDice())
+                    {    
+                    System.out.println(d.face);
+                    }
+                call.menu();
+                String choice = input.nextLine();
+                if (choice.equalsIgnoreCase(raise)){
+                    System.out.println("Do you want to raise value or quantity?");
+                    String nextChoice = input.nextLine();
+                    if (nextChoice.equalsIgnoreCase(value)){
+                        System.out.println("What value?");
+                        annte.higherDice();
+                        System.out.println("");
+                    }
+                    else if (nextChoice.equalsIgnoreCase(quantity)) {
+                        System.out.println("How many dice?");
+                        annte.moreDice();
+                        System.out.println("");
+                    }
+                    else{
+                        System.out.println("That wasn't an option so we will"
+                                + " skip your turn");
+                    }
+                }
+                else if (choice.equalsIgnoreCase(accuse)){
+                    System.out.println("You are a liar!");
+                    System.out.println("");
+                    liar = true;
+                }
+                else{
+                    System.out.println("That wasn't an option so we will skip"
+                            + " your turn.");
+                }
+                
+            }while (liar == false);
+            //you.loseLives();
+        } while (you.getLives()>0);//use 5 in quick test and lose life
+    }
+    public static void menu(){
+        System.out.println("raise or accuse?");
+    }
+    
+}
+//not done yet
